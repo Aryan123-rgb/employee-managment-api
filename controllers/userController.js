@@ -48,7 +48,7 @@ const handleSignUpUser = async (req, res) => {
       email: email || "",
       password: password || "",
       image: image || "",
-      isAdmin: isAdmin || "",
+      isAdmin: isAdmin || true,
     });
     jwt.sign(
       {
