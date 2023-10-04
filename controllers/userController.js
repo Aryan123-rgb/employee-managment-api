@@ -6,12 +6,8 @@ const secret = "!@#$%^&*()";
 
 const handleLoginUser = async (req, res) => {
   const { email, password } = req.body;
-  const userDoc = await User.findOne({ email, password });
-
-  if (!userDoc) {
-    return res.status(404).json("Invalid credentials entered");
-  }
-
+  const userDoc = await User.find({ email, password });
+  res.json(userDoc);
   if (userDoc) {
     jwt.sign(
       {
@@ -33,7 +29,7 @@ const handleLoginUser = async (req, res) => {
           image: userDoc.image,
           token: token,
         };
-        res.cookie("token", token).json(response);
+        res.cookie("token", token).json("response");
       }
     );
   } else res.status(400).json({ error: "Not found" });
