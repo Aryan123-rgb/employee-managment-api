@@ -42,12 +42,6 @@ const handleLoginUser = async (req, res) => {
 const handleSignUpUser = async (req, res) => {
   const { name, email, password, image, isAdmin } = req.body;
 
-  const userExist = await User.find({ email });
-
-  if (userExist) {
-    return res.status(400).json("Email already exists");
-  }
-
   try {
     const userDoc = await User.create({
       name: name || "",
